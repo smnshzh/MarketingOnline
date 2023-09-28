@@ -8,7 +8,7 @@ from db_connector.db import connect_to_db
  # Create a cursor object
 cursor = connect_to_db().cursor()
 
-cursor.execute("SELECT * FROM marketing.imagegather")
+cursor.execute("SELECT * FROM imagegather")
 results = cursor.fetchall()
 # Process the results
 for row in results:
