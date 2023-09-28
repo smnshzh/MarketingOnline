@@ -10,7 +10,7 @@ import extra_streamlit_components as stx
 def init_rout():
     page = {   
             "Pricing":price_survayer,
-            "/outside":outside0
+            "Shelfing":shelf_survayer
             }
 
 
