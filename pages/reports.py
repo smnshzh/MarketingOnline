@@ -11,6 +11,19 @@ cursor = connect_to_db().cursor()
 cursor.execute("SELECT * FROM imagegather")
 results = cursor.fetchall()
 # Process the results
+col1 , col2 , col3 = st.columns(3)
+i = 1
 for row in results:
-    st.write(row)
+    if i % 3 ==0 :
+        with col3:
+            st.header(row[0])
+            st.image(row[1],key = row[5])
+    elif i% 2 ==0:
+        with col3:
+            st.header(row[0])
+            st.image(row[1], key=row[5])
+    else:
+        with col1:
+            st.header(row[0])
+            st.image(row[1], key=row[5])
    
