@@ -1,51 +1,36 @@
-import sqlmodel
-from sqlmodel import Field, Session, SQLModel
-from setting import db_params_mysql as dpm
-class MySQL:
-    def __init__(self, username=dpm["user"], 
-                 password=dpm["password"], 
-                 server_name=dpm["host"], 
-                 database_name=dpm["database"]):
-        self.engine = sqlmodel.create_engine(
-            f"mysql+pymysql://{username}:{password}@{server_name}/{database_name}"
+import pymysql
+
+
+def my_sql_connection(host, user, password, database, port=3306):
+    
+    try:
+        connection = pymysql.connect(
+            host=host,       # MySQL database host address (e.g., "127.0.0.1" or "localhost")
+            user=user,       # MySQL username
+            password=password,  # MySQL password
+            database=database,  # Name of the database
+            port=port         # MySQL port (e.g., 3308)
         )
-       
+        
+        return connection
+    except pymysql.Error as e:
+        print(f"Error: {e}")
+        return None
 
-class PostgreSQL:
-    def __init__(self, username: str, password: str, server_name: str, database_name: str):
-        self.engine = sqlmodel.create_engine(
-            f"postgresql+psycopg2://{username}:{password}@{server_name}/{database_name}"
-        )
+def connect_to_db():
+    dpm = {
+    "user": "sql12649695",
+    "password": "LjgnWc9Y41",
+    "host": "sql12.freemysqlhosting.net",
+    "database": "sql12649695",
+}
 
-class SQLite:
-    def __init__(self, database_name: str):
-        self.engine = sqlmodel.create_engine(
-            f"sqlite:///{database_name}.db"
-        )
+    port = 3306  # Update the port to match your MySQL server configuration
 
-class SQLServer:
-    def __init__(self, username: str, password: str, server_name: str, database_name: str):
-        self.engine = sqlmodel.create_engine(
-            f"mssql+pyodbc://{username}:{password}@{server_name}/{database_name}"
-        )
-
-class Oracle:
-    def __init__(self, username: str, password: str, server_name: str, database_name: str):
-        self.engine = sqlmodel.create_engine(
-            f"oracle+cx_oracle://{username}:{password}@{server_name}/{database_name}"
-        )
-
-class CockroachDB:
-    def __init__(self, username: str, password: str, server_name: str, database_name: str):
-        self.engine = sqlmodel.create_engine(
-            f"cockroachdb+psycopg2://{username}:{password}@{server_name}/{database_name}"
-        )
-
-class MariaDB:
-    def __init__(self, username: str, password: str, server_name: str, database_name: str):
-        self.engine = sqlmodel.create_engine(
-            f"mariadb+pymysql://{username}:{password}@{server_name}/{database_name}"
-        )
-
-
-
+    # Establish a database connection
+    cnx = my_sql_connection(host=dpm["host"], 
+                            user=dpm['user'], 
+                            password=dpm['password'], 
+                            database=dpm['database'], 
+                            port=port)
+    return cnx

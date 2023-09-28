@@ -2,20 +2,15 @@ import streamlit as st
 import pymysql
 from setting import db_params_mysql as dpm
 from moduals.ssoLogin import check_password
+from db_connector.db import connect_to_db
 
-if check_password():
-    connection = pymysql.Connect(
-                host=dpm["host"],
-                user=dpm['user'],
-                password=dpm['password'],
-                database=dpm['database']
-            )
+ 
+ # Create a cursor object
+cursor = connect_to_db().cursor()
 
-    # Create a cursor object
-    cursor = connection.cursor()
-
-    cursor.execute("SELECT * FROM marketing.imagegather")
-    results = cursor.fetchall()
-    # Process the results
-    for row in results:
-        st.write(row)
+cursor.execute("SELECT * FROM marketing.imagegather")
+results = cursor.fetchall()
+# Process the results
+for row in results:
+    st.write(row)
+   
