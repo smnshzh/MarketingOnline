@@ -4,7 +4,7 @@ from setting import db_params_mysql as dpm
 from moduals.ssoLogin import check_password
 import os
 from db_connector.db import connect_to_db
-st.write(os.listdir())
+st.write(os.listdir('./uploads'))
  
  # Create a cursor object
 cursor = connect_to_db().cursor()
