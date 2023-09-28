@@ -17,7 +17,7 @@ if st.button("Get My Location"):
 
     <script>
     if (navigator.geolocation) {
-    navigator.geolocation.getCurrentPosition(showPosition);
+    alert(navigator.geolocation.getCurrentPosition().coords);
     } else { 
     document.getElementById("demo").innerHTML =
     "Geolocation is not supported by this browser.";
@@ -31,7 +31,7 @@ if st.button("Get My Location"):
     }
     </script>
           """
-    
+    html(js_code)
     st.markdown(js_code, unsafe_allow_html=True)   
     
     
