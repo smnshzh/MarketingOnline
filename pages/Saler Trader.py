@@ -53,7 +53,7 @@ def price_survayer():
                     items["images"] = image_path
 
                     # Use parameterized queries to avoid SQL injection
-                    query = "INSERT INTO marketing.imagegather (name, image, buyPrice, salePrice, description) VALUES (%s, %s, %s, %s, %s)"
+                    query = "INSERT INTO imagegather (name, image, buyPrice, salePrice, description) VALUES (%s, %s, %s, %s, %s)"
                     values = (str(items['name']), items['images'], float(items['bp']), float(items['sp']), items['dsc'])
 
                     cursor.execute(query, values)
@@ -108,7 +108,7 @@ def shelf_survayer():
                     items["images"] = image_path
 
                     # Use parameterized queries to avoid SQL injection
-                    query = "INSERT INTO marketing.shelfgathering (customer_name, customer_id,img_path,loc,description) VALUES (%s, %s, %s, %s, %s)"
+                    query = "INSERT INTO shelfgathering (customer_name, customer_id,img_path,loc,description) VALUES (%s, %s, %s, %s, %s)"
                     values = (str(items['name']), items['code'], items['images'], items['loc'], items['dsc'])
 
                     cursor.execute(query, values)
