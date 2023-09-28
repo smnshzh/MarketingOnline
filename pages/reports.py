@@ -17,13 +17,13 @@ for row in results:
     if i % 3 ==0 :
         with col3:
             st.header(row[0])
-            st.image(row[1],key = row[5])
+            st.image(row[1])
     elif i% 2 ==0:
         with col3:
             st.header(row[0])
-            st.image(row[1], key=row[5])
+            st.image(row[1])
     else:
         with col1:
             st.header(row[0])
-            st.image(row[1], key=row[5])
+            st.image(row[1])
    
